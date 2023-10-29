@@ -31,8 +31,9 @@ public class RatingController {
     }
 
     @PostMapping
-    public String createRating(Long userid, Long serviceid){
-        return  ("Created rating for userid" +userid+ " and service: "+serviceid);
+    public RatingDto createRating(@RequestBody RatingDto ratingDto){
+            return ratingService.createRating(ratingDto);
+//        return  ("Created rating for userid" +userid+ " and service: "+serviceid);
     }
 
     @DeleteMapping("{id}")

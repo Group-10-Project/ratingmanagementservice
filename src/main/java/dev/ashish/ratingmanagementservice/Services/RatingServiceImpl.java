@@ -53,9 +53,14 @@ public class RatingServiceImpl implements RatingService{
 //    }
 
 
-    public String createRating(Long userid, Long serviceid){
-        return  ("Created rating for userid" +userid+ " and service: "+serviceid);
+    public RatingDto createRating(RatingDto ratingDto) {
+        Rating rating = convertRatingDtoToRating(ratingDto);
+        ratingRepository.save(rating);
+
+        return convertRatingToRatingDto(rating);
     }
+    // return  ("Created rating for userid" +userid+ " and service: "+serviceid);
+
 
 
     public String deleteRating(@PathVariable("id") Long id){
@@ -70,7 +75,6 @@ public class RatingServiceImpl implements RatingService{
         RatingDto ratingDto=new RatingDto();
         ratingDto.setComment(rating.getComment());
         ratingDto.setCreatedId(ratingDto.getCreatedId());
-
         ratingDto.setCreatedDate(rating.getCreatedDate());
         ratingDto.setService_id(rating.getService_id());
         ratingDto.setIsDeleted(rating.getIsDeleted());
@@ -80,5 +84,21 @@ public class RatingServiceImpl implements RatingService{
         ratingDto.setUpdatedId(rating.getUpdatedId());
 
         return  ratingDto;
+    }
+
+    private Rating convertRatingDtoToRating(RatingDto ratingDto){
+        Rating rating=new Rating();
+
+        rating.setIsDeleted(ratingDto.getIsDeleted());
+        rating.setUser_id(ratingDto.getUser_id());
+        rating.setUserRating(ratingDto.getUserRating());
+        rating.setUpdatedDate(ratingDto.getUpdatedDate());
+        rating.setUpdatedId(ratingDto.getUpdatedId());
+         rating.setComment(ratingDto.getComment());
+         rating.setCreatedId(ratingDto.getCreatedId());
+         rating.setCreatedDate(ratingDto.getCreatedDate());
+         rating.setService_id(ratingDto.getService_id());
+
+        return  rating;
     }
 }

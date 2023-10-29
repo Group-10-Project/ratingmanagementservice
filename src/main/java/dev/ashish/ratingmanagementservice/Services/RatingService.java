@@ -12,4 +12,6 @@ public interface RatingService {
 
     List<RatingDto> getAllRatings();
 
+    RatingDto createRating(RatingDto ratingDto);
+
 }
