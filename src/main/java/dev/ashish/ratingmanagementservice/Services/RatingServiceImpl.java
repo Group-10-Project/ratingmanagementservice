@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Primary
+
 @Service
 public class RatingServiceImpl implements RatingService{
 
@@ -38,11 +39,14 @@ public class RatingServiceImpl implements RatingService{
 //    return "Rating is:";
     }
 
-//    public List<RatingDto> getAllRatings(){
-//        List<Rating> ratings=ratingRepository.findAllRating();
-//
-//        return ratings.stream().map(this::convertRatingToRatingDto).collect(Collectors.toList());
-//    }
+    @Override
+    public List<RatingDto> getAllRatings(){
+        List<Rating> ratingList=ratingRepository.findAll();
+//        List<Rating> ratingList=new ArrayList<>();
+//        ratingList.add(new Rating());
+//        ratingList.add(new Rating());
+        return ratingList.stream().map(this::convertRatingToRatingDto).collect(Collectors.toList());
+    }
 
 //    public String getRatingById(@PathVariable("id") Long id){
 //        return "Rating is :" + 4;
@@ -71,7 +75,7 @@ public class RatingServiceImpl implements RatingService{
         ratingDto.setService_id(rating.getService_id());
         ratingDto.setIsDeleted(rating.getIsDeleted());
         ratingDto.setUser_id(rating.getUser_id());
-        ratingDto.setRating(rating.getRating());
+        ratingDto.setUserRating(rating.getUserRating());
         ratingDto.setUpdatedDate(rating.getUpdatedDate());
         ratingDto.setUpdatedId(rating.getUpdatedId());
 

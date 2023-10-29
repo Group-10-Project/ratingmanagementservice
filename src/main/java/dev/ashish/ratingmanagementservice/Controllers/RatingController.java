@@ -24,10 +24,11 @@ public class RatingController {
         return ratingService.getRatingById(id) ;
     }
 
-//    @GetMapping
-//    public List<RatingDto> getAllRatings(){
-//        return ratingService.getAllRatings();
-//    }
+    @GetMapping
+    public List<RatingDto> getAllRatings(){
+
+        return ratingService.getAllRatings() ;
+    }
 
     @PostMapping
     public String createRating(Long userid, Long serviceid){

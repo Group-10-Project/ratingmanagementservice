@@ -10,6 +10,6 @@ public interface RatingService {
 
     RatingDto getRatingById(Long id) throws NotFoundException;
 
-   // List<RatingDto> getAllRatings();
+    List<RatingDto> getAllRatings();
 
 }

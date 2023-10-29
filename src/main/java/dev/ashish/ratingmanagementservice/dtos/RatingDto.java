@@ -11,7 +11,7 @@ public class RatingDto {
     Long service_id;
 
     Long user_id;
-    Float rating;
+    Float userRating;
     String Comment;
     Timestamp CreatedDate ;
     Long CreatedId;
