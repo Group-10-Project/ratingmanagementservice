@@ -1,19 +1,13 @@
-package dev.ashish.ratingmanagementservice.models;
+package dev.ashish.ratingmanagementservice.dtos;
 
-import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Rating extends BaseModel {
+public class RatingDto {
     Long service_id;
 
     Long user_id;
@@ -24,5 +18,4 @@ public class Rating extends BaseModel {
     Timestamp UpdatedDate;
     Long UpdatedId;
     Boolean isDeleted;
-
 }
