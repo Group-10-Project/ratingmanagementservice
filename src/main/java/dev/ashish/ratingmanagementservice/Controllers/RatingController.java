@@ -4,6 +4,8 @@ import dev.ashish.ratingmanagementservice.Exceptions.NotFoundException;
 import dev.ashish.ratingmanagementservice.Services.RatingService;
 import dev.ashish.ratingmanagementservice.dtos.RatingDto;
 import dev.ashish.ratingmanagementservice.models.Rating;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,17 +33,25 @@ public class RatingController {
     }
 
     @PostMapping
-    public String createRating(Long userid, Long serviceid){
-        return  ("Created rating for userid" +userid+ " and service: "+serviceid);
+    public RatingDto createRating(@RequestBody RatingDto ratingDto){
+            return ratingService.createRating(ratingDto);
+//        return  ("Created rating for userid" +userid+ " and service: "+serviceid);
     }
 
     @DeleteMapping("{id}")
-    public String deleteRating(@PathVariable("id") Long id){
-        return "deleted Rating for "+id;
+    public ResponseEntity<RatingDto> deleteRating(@PathVariable("id") Long id){
+        //return "deleted Rating for "+id;
+
+        return  new ResponseEntity<>(ratingService.deleteRating(id), HttpStatus.OK);
     }
 
     @PutMapping("{id}")
-    public  String updateRating(@PathVariable("id") Long id){
-        return "Updated Rating" + id;
+    public  RatingDto updateRating(@PathVariable("id") Long id, @RequestBody RatingDto ratingDto) throws NotFoundException {
+        return ratingService.updateRatingById(ratingDto,id);
     }
+
+//    @PutMapping("{id}")
+//    public  RatingDto softDeleteRating(@PathVariable("id") Long id, @RequestBody RatingDto ratingDto) throws NotFoundException {
+//        return ratingService.updateRatingById(ratingDto,id);
+//    }
 }

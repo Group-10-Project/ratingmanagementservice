@@ -12,4 +12,12 @@ public interface RatingService {
 
     List<RatingDto> getAllRatings();
 
+    RatingDto createRating(RatingDto ratingDto);
+
+    RatingDto deleteRating(Long id);
+
+    RatingDto updateRatingById(RatingDto ratingDto,Long id) throws NotFoundException;
+
+    RatingDto softDeleteRating(RatingDto ratingDto,Long id) throws NotFoundException;
+
 }
